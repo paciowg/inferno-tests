@@ -1,56 +1,41 @@
 module PacioRat
-    class Encounter < Inferno::TestGroup
-      title 'Encounter (PACIO Re-assessment Timepoints) Tests'
-        
-      description 'Verify support for the server capabilities required by the Encounter profile.'
-      id :pacio_rat_encounter
-  
-      test do
-        title 'Server returns correct Encounter resource from the Encounter read interaction'
-        description %(
-          This test will verify that Encounter resources can be read from the server.
-        )
-        # link http://hl7.org/fhir/us/pacio-rat/StructureDefinition/prat-encounter
-  
-      input :encounter_id
-      makes_request :encounter
-  
+  class Encounter < Inferno::TestGroup
+    title 'Encounter (PACIO Re-assessment Timepoints) Tests'
+      
+    description 'Verify support for the server capabilities required by the Encounter profile.'
+    id :pacio_rat_encounter
+
+    test do
+      title 'Server returns correct Encounter resource from the Encounter read interaction'
+      description %(
+        This test will verify that Encounter resources can be read from the server.
+      )
+      # link http://hl7.org/fhir/us/pacio-rat/StructureDefinition/prat-encounter
+
+    input :encounter_id
+    makes_request :encounter
+
+    run do
+      fhir_read(:encounter, encounter_id, name: :encounter)
+
+      assert_response_status(200)
+        assert_resource_type(:encounter)
+        assert resource.id == encounter_id,
+               "Requested resource with id #{encounter_id}, received resource with id #{resource.id}"
+      end
+    end
+
+    test do
+      title 'Server returns Encounter resoure that matches the Encounter (PACIO Re-assessment Timepoints) profile'
+      description %(
+        This test will validate that the Encounter resource returned from the server matches the Encounter (PACIO Re-assessment Timepoints) profile.
+      )
+      # link http://hl7.org/fhir/us/pacio-rat/StructureDefinition/prat-encounter
+      uses_request :encounter
+
       run do
-        fhir_read(:encounter, encounter_id, name: :encounter)
-  
-        assert_response_status(200)
-          assert_resource_type(:encounter)
-          assert resource.id == encounter_id,
-                 "Requested resource with id #{encounter_id}, received resource with id #{resource.id}"
-        end
+        assert_valid_resource(profile_url: 'http://hl7.org/fhir/us/pacio-rat/StructureDefinition/prat-encounter')
       end
-  
-      test do
-        title 'Server returns Encounter resoure that matches the Encounter (PACIO Re-assessment Timepoints) profile'
-        description %(
-          This test will validate that the Encounter resource returned from the server matches the Encounter (PACIO Re-assessment Timepoints) profile.
-        )
-        # link http://hl7.org/fhir/us/pacio-rat/StructureDefinition/prat-encounter
-        uses_request :encounter
-  
-        run do
-          assert_valid_resource(profile_url: 'http://hl7.org/fhir/us/pacio-rat/StructureDefinition/prat-encounter')
-        end
-      end
-
-
-
-
-      test do
-        title 'Server returns Encounter resource(s) that match the search criteria'
-        description %(
-          This test will verify the Encounter search capabilities defined in the PACIO Re-assessment Timepoints capability statement
-        )
-        # link http://hl7.org/fhir/us/pacio-rat/StructureDefinition/prat-encounter
-
-
-
-
-
     end
   end
+end
