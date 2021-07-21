@@ -39,6 +39,7 @@ module PacioRat
       title 'Re-assessment Timepoints Resources'
 
       group from: :pacio_rat_patient
+      group from: :pacio_rat_encounter
     end
 
     # Tests and TestGroups can be written in separate files and then included

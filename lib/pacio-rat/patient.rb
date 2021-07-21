@@ -1,6 +1,6 @@
 module PacioRat
   class Patient < Inferno::TestGroup
-    title 'Patient (PACIO Re-assessment Timepoints Tests'
+    title 'Patient (PACIO Re-assessment Timepoints) Tests'
       
     description 'Verify support for the server capabilities required by the Patient profile.'
     id :pacio_rat_patient
