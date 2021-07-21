@@ -51,7 +51,7 @@ module PacioRat
       uses_request :encounter
 
       run do
-        fhir_search :encounter, params: { encounter: resource.id }
+        fhir_search :encounter, params: { _id: resource.id }
 
         assert_response_status(200)
         assert_resource_type('Bundle')
