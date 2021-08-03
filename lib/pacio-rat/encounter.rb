@@ -37,5 +37,23 @@ module PacioRat
         assert_valid_resource(profile_url: 'http://hl7.org/fhir/us/pacio-rat/StructureDefinition/prat-encounter')
       end
     end
+
+    test do
+      title 'Server supports searching Encounter (PACIO Re-assessment Timepoints) profile by encounter ID'
+      description %(
+        This test will validate that the FHIR server supports searching Encounter by ID (PACIO Re-assessment Timepoints) profile.
+      )
+      # link http://hl7.org/fhir/us/pacio-rat/StructureDefinition/prat-encounter
+
+      uses_request :encounter
+
+      run do
+        fhir_search :encounter, params: { _id: resource.id }
+
+        assert_response_status(200)
+        assert_resource_type('Bundle')
+      end
+    end
+
   end
 end

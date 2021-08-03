@@ -1,10 +1,10 @@
-Dir.glob(File.join(__dir__, 'pacio-rat', '*.rb')).each { |path| require_relative path.delete_prefix("#{__dir__}/") }
+Dir.glob(File.join(__dir__, 'pacio-adi', '*.rb')).each { |path| require_relative path.delete_prefix("#{__dir__}/") }
 
-module PacioRat
+module PacioAdi
   class Suite < Inferno::TestSuite
-    id :test_suite_template #should I keep id as test_suite_template or rename it to something like test_suite_rat?
-    title 'PACIO Re-assessment Timepoints'
-    description 'PACIO Re-assessment Timepoints'
+    id :test_suite_adi
+    title 'PACIO Advance Directives'
+    description 'PACIO Advance Directives'
 
     # This input will be available to all tests in this suite
     input :url
@@ -35,10 +35,10 @@ module PacioRat
     end
 
     group do
-      title 'Re-assessment Timepoints Resources'
+      title 'Advance Directives Resources'
 
-      group from: :pacio_rat_patient
-      group from: :pacio_rat_encounter
+      #group from: :pacio_adi_patient
+      group from: :pacio_adi_organ_donation
     end
 
     # Tests and TestGroups can be written in separate files and then included
