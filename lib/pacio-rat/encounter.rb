@@ -39,8 +39,6 @@ module PacioRat
       end
     end
 
-
-
     test do
       title 'Server supports searching Encounter (PACIO Re-assessment Timepoints) profile by encounter ID'
       description %(
@@ -56,7 +54,6 @@ module PacioRat
         assert_response_status(200)
         assert_resource_type('Bundle')
       end
-
     end
     
   end

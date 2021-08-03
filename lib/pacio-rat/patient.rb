@@ -5,14 +5,15 @@ module PacioRat
     description 'Verify support for the server capabilities required by the Patient profile.'
     id :pacio_rat_patient
 
+    input :patient_id
+
     test do
       title 'Server returns correct Patient resource from the Patient read interaction'
       description %(
         This test will verify that Patient resources can be read from the server.
       )
-      # link https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-patient
+      # link http://hl7.org/fhir/us/pacio-rat/StructureDefinition/patient
 
-    input :patient_id
     makes_request :patient
 
     run do
@@ -30,12 +31,30 @@ module PacioRat
       description %(
         This test will validate that the Patient resource returned from the server matches the Patient (PACIO Re-assessment Timepoints) profile.
       )
-      # link https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-patient
+      # link http://hl7.org/fhir/us/pacio-rat/StructureDefinition/patient
       uses_request :patient
 
       run do
-        assert_valid_resource(profile_url: 'https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-patient')
+        assert_valid_resource(profile_url: 'http://hl7.org/fhir/us/pacio-rat/StructureDefinition/patient')
       end
     end
+
+    test do
+      title 'Server supports searching Patient (PACIO Re-assessment Timepoints) profile by patient ID'
+      description %(
+        This test will validate that the FHIR server supports searching Patient by ID (PACIO Re-assessment Timepoints) profile.
+      )
+      # link http://hl7.org/fhir/us/pacio-rat/StructureDefinition/patient
+
+      uses_request :patient
+
+      run do
+        fhir_search :patient, params: { _id: resource.id }
+
+        assert_response_status(200)
+        assert_resource_type('Bundle')
+      end
+    end
+
   end
 end
