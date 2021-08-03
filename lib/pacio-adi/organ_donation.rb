@@ -31,7 +31,7 @@ module PacioAdi
           This test will validate that the Organ Donation resource returned from the server matches the Organ Donation (PACIO Advance Directives) profile.
         )
         # link http://hl7.org/fhir/us/pacio-adi/StructureDefinition/PADI-OrganDonationObservation
-        uses_request :encoorgan_donationunter
+        uses_request :organ_donation
   
         run do
           assert_valid_resource(profile_url: 'http://hl7.org/fhir/us/pacio-adi/StructureDefinition/PADI-OrganDonationObservation')
