@@ -10,7 +10,7 @@ module PacioRat
       description %(
         This test will verify that Patient resources can be read from the server.
       )
-      # link https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-patient
+      # link http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
 
     input :patient_id
     makes_request :patient
@@ -30,11 +30,11 @@ module PacioRat
       description %(
         This test will validate that the Patient resource returned from the server matches the Patient (PACIO Re-assessment Timepoints) profile.
       )
-      # link https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-patient
+      # link http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient
       uses_request :patient
 
       run do
-        assert_valid_resource(profile_url: 'https://www.hl7.org/fhir/us/core/StructureDefinition-us-core-patient')
+        assert_valid_resource(profile_url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient')
       end
     end
   end
