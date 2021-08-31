@@ -39,6 +39,7 @@ module PacioAdi
 
       #group from: :pacio_adi_patient
       group from: :pacio_adi_organ_donation
+      group from: :pacio_adi_personal_goal
     end
 
     # Tests and TestGroups can be written in separate files and then included

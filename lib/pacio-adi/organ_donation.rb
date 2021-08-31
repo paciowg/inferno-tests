@@ -39,7 +39,7 @@ module PacioAdi
       end
   
       test do
-        title 'Server supports searching Organ Donation (PACIO Advance Directives) profile by organ donation ID'
+        title 'Server supports searching Organ Donation (PACIO Advance Directives) profile by Organ Donation ID'
         description %(
           This test will validate that the FHIR server supports searching Organ Donation by ID (PACIO Advance Directives) profile.
         )
