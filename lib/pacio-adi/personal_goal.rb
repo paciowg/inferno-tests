@@ -16,10 +16,10 @@ module PacioAdi
       makes_request :personal_goal
   
       run do
-        fhir_read(:personal_goal, personal_goal_id, name: :personal_goal)
+        fhir_read(:observation, personal_goal_id, name: :personal_goal)
   
         assert_response_status(200)
-          assert_resource_type(:personal_goal)
+          assert_resource_type(:observation)
           assert resource.id == personal_goal_id,
                  "Requested resource with id #{personal_goal_id}, received resource with id #{resource.id}"
         end
