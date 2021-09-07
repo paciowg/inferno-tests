@@ -3,7 +3,6 @@ module PacioAdi
       title 'Personal Goal (PACIO Advance Directives) Tests'
         
       description 'Verify support for the server capabilities required by the Personal Goal profile.'
-      id :pacio_adi_personal_goal
   
       test do
         title 'Server returns correct Personal Goal resource from the Personal Goal read interaction'
