@@ -38,22 +38,5 @@ module PacioAdi
         end
       end
   
-      test do
-        title 'Server supports searching Personal Goal (PACIO Advance Directives) profile by Personal Goal ID'
-        description %(
-          This test will validate that the FHIR server supports searching Personal Goal by ID (PACIO Advance Directives) profile.
-        )
-        # link http://hl7.org/fhir/us/pacio-adi/StructureDefinition/PADI-PersonalGoal
-  
-        uses_request :personal_goal
-  
-        run do
-          fhir_search :personal_goal, params: { _id: resource.id }
-  
-          assert_response_status(200)
-          assert_resource_type('Bundle')
-        end
-      end
-  
     end
   end
