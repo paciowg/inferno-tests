@@ -3,6 +3,7 @@ module PacioAdi
     title 'Organ Donation (PACIO Advance Directives) Tests'
       
     description 'Verify support for the server capabilities required by the Organ Donation Observation profile.'
+    id :pacio_adi_organ_donation
 
     test do
       title 'Server returns correct Organ Donation Observation resource from the Organ Donation Observation read interaction'
