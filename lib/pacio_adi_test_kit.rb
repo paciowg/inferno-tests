@@ -46,6 +46,12 @@ module PacioAdi
       group from: :pacio_adi_autopsy_observation
       group from: :pacio_adi_personal_intervention_preference
       group from: :pacio_adi_pmolst_observation
+      group from: :pacio_adi_healthcare_agent_consent
+      group from: :pacio_adi_healthcare_agent
+      group from: :pacio_adi_personal_advance_care_plan_composition
+      group from: :pacio_adi_header
+      group from: :pacio_adi_document_reference
+
     end
 
     # Tests and TestGroups can be written in separate files and then included
