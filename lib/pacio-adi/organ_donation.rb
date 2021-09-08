@@ -1,6 +1,6 @@
 module PacioAdi
   class OrganDonation < Inferno::TestGroup
-    title 'Organ Donation (PACIO Advance Directives) Tests'
+    title 'Organ Donation Observation (PACIO Advance Directives) Tests'
       
     description 'Verify support for the server capabilities required by the Organ Donation Observation profile.'
     id :pacio_adi_organ_donation

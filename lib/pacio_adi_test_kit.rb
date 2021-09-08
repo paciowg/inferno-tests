@@ -40,6 +40,8 @@ module PacioAdi
       #group from: :pacio_adi_patient
       group from: :pacio_adi_organ_donation
       group from: :pacio_adi_personal_goal
+      group from: :pacio_adi_adi_provenance
+      group from: :pacio_adi_care_experience_preference
     end
 
     # Tests and TestGroups can be written in separate files and then included
