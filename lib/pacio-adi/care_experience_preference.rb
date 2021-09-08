@@ -16,10 +16,10 @@ module PacioAdi
       makes_request :care_experience_preference
   
       run do
-        fhir_read(:observation, care_experience_preference_id, name: :care_experience_preference)
+        fhir_read(:goal, care_experience_preference_id, name: :care_experience_preference)
   
         assert_response_status(200)
-          assert_resource_type(:observation)
+          assert_resource_type(:goal)
           assert resource.id == care_experience_preference_id,
                  "Requested resource with id #{care_experience_preference_id}, received resource with id #{resource.id}"
         end
