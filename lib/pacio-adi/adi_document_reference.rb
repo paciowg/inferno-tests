@@ -16,10 +16,10 @@ module PacioAdi
       makes_request :adi_document_reference
   
       run do
-        fhir_read(:uscoredocumentreferenceprofile, adi_document_reference_id, name: :adi_document_reference)
+        fhir_read(:DocumentReference, adi_document_reference_id, name: :adi_document_reference)
   
         assert_response_status(200)
-          assert_resource_type(:uscoredocumentreferenceprofile)
+          assert_resource_type(:DocumentReference)
           assert resource.id == adi_document_reference_id,
                  "Requested resource with id #{adi_document_reference_id}, received resource with id #{resource.id}"
         end
