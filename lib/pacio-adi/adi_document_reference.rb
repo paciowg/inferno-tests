@@ -83,7 +83,7 @@ module PacioAdi
   
         run do
           assert resource.id == "asdf",
-                  "Received resource with id #{resource.id}"
+                  "Received resource with resourceType #{resource.resourceType}"
         end
       end
       #no new stuff beyond this point
