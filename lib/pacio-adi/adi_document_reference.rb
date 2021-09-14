@@ -25,7 +25,8 @@ module PacioAdi
   
         assert_response_status(200)
           assert_resource_type(:DocumentReference)
-          assert resource.id == adi_document_reference_id,
+          #assert resource.id == adi_document_reference_id,
+          assert resource.id == "asdf",
                  "Requested resource with id #{adi_document_reference_id}, received resource with id #{resource.id}"
         end
       end
@@ -81,8 +82,8 @@ module PacioAdi
         uses_request :adi_document_reference
   
         run do
-          assert resource.id == -1,
-          ("Received resource with to_s: " + resource.to_s)
+          assert resource.id == "asdf",
+                  "Received resource with id #{resource.id}"
         end
       end
       #no new stuff beyond this point
