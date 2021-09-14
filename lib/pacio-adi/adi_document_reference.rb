@@ -1,5 +1,10 @@
 module PacioAdi
     class AdiDocumentReference < Inferno::TestGroup
+
+      require "logger"
+      logger = Logger.new(STDOUT)
+      logger.debug("I'm a debug log")
+
       title 'ADI Document Reference (PACIO Advance Directives) Tests'
         
       description 'Verify support for the server capabilities required by the ADI Document Reference profile.'
