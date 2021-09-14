@@ -41,8 +41,8 @@ module PacioAdi
     
           assert_response_status(200)
             assert_resource_type(:DocumentReference)
-            assert adi_document_reference.id == adi_document_reference_id,
-                   "Requested resource with id #{adi_document_reference_id}, received resource with id #{adi_document_reference.id}"
+            assert :adi_document_reference.id == adi_document_reference_id,
+                   "Requested resource with id #{adi_document_reference_id}, received resource with id #{:adi_document_reference.id}"
           end
       end
       #no new stuff beyond this point
