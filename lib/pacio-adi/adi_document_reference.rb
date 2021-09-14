@@ -29,7 +29,7 @@ module PacioAdi
 
       #begin new stuff
       test do
-        title 'Server returns valid JSON for ADI Document Reference resoure'
+        title 'Server returns valid JSON ADI Document Reference resoure'
         description %(
           This test will verify that the ADI Document Reference resource returned from the server is valid JSON.
         )
@@ -37,9 +37,7 @@ module PacioAdi
         uses_request :adi_document_reference
   
         run do
-          puts "hello adi_doc_reference"
-          puts resource
-          assert_valid_json(resource)
+          assert_valid_json(request)
         end
       end
       #no new stuff beyond this point
