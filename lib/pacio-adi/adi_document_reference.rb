@@ -38,11 +38,13 @@ module PacioAdi
   
         run do
           fhir_read(:DocumentReference, adi_document_reference_id, name: :adi_document_reference)
-    
+  
           assert_response_status(200)
-            assert_resource_type(:DocumentReference)
-            assert adi_document_reference.id == adi_document_reference_id,
-                   "Requested resource with id #{adi_document_reference_id}, received resource with id #{adi_document_reference.id}"
+          assert_resource_type(:DocumentReference)
+          puts "this is a print statement in AdiDocumentReference"
+          puts resource.to_s
+          assert resource.id == adi_document_reference_id,
+                 "Requested resource with id #{adi_document_reference_id}, received resource with id #{resource.id}"
           end
       end
       #no new stuff beyond this point
