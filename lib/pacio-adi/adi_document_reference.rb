@@ -6,7 +6,7 @@ module PacioAdi
       id :pacio_adi_document_reference
   
       test do
-        title 'aaaa Server returns correct ADI Document Reference resource from the ADI Document Reference read interaction'
+        title 'Server returns correct ADI Document Reference resource from the ADI Document Reference read interaction'
         description %(
           This test will verify that ADI Document Reference resources can be read from the server.
         )
@@ -29,16 +29,21 @@ module PacioAdi
 
       #begin new stuff
       test do
-        title 'Server returns valid JSON ADI Document Reference resoure'
+        title 'This is a test.... test'
         description %(
-          This test will verify that the ADI Document Reference resource returned from the server is valid JSON.
+          This test will test the test's test.
         )
         # link http://hl7.org/fhir/us/pacio-adi/StructureDefinition/PADI-DocumentReference
         uses_request :adi_document_reference
   
         run do
-          assert_valid_resource(profile_url: 'http://hl7.org/fhir/us/pacio-adi/StructureDefinition/PADI-DocumentReference')
-        end
+          fhir_read(:DocumentReference, adi_document_reference_id, name: :adi_document_reference)
+    
+          assert_response_status(200)
+            assert_resource_type(:DocumentReference)
+            assert adi_document_reference.id == adi_document_reference_id,
+                   "Requested resource with id #{adi_document_reference_id}, received resource with id #{adi_document_reference.id}"
+          end
       end
       #no new stuff beyond this point
 
