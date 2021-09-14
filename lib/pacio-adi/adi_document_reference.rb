@@ -24,6 +24,28 @@ module PacioAdi
                  "Requested resource with id #{adi_document_reference_id}, received resource with id #{resource.id}"
         end
       end
+
+
+
+      #begin new stuff
+      test do
+        title 'Server returns valid JSON for ADI Document Reference resoure'
+        description %(
+          This test will verify that the ADI Document Reference resource returned from the server is valid JSON.
+        )
+        # link http://hl7.org/fhir/us/pacio-adi/StructureDefinition/PADI-DocumentReference
+        uses_request :adi_document_reference
+  
+        run do
+          puts "hello adi_doc_reference"
+          puts resource
+          assert_valid_json(resource)
+        end
+      end
+      #no new stuff beyond this point
+
+
+
   
       test do
         title 'Server returns ADI Document Reference resoure that matches the ADI Document Reference (PACIO Advance Directives) profile'
