@@ -4,6 +4,7 @@ module PacioAdi
         
       description 'Verify support for the server capabilities required by the ADI Document Reference profile.'
       id :pacio_adi_document_reference
+      input :adi_document_reference_id
   
       test do
         title 'Server returns correct ADI Document Reference resource from the ADI Document Reference read interaction'
@@ -12,7 +13,6 @@ module PacioAdi
         )
         # link http://hl7.org/fhir/us/pacio-adi/StructureDefinition/PADI-DocumentReference
   
-      input :adi_document_reference_id
       makes_request :adi_document_reference
   
       run do
@@ -41,8 +41,8 @@ module PacioAdi
     
           assert_response_status(200)
             assert_resource_type(:DocumentReference)
-            assert :adi_document_reference.id == @adi_document_reference_id,
-                   "Requested resource with id #{@adi_document_reference_id}, received resource with id #{:adi_document_reference.id}"
+            assert :adi_document_reference.id == adi_document_reference_id,
+                   "Requested resource with id #{adi_document_reference_id}, received resource with id #{:adi_document_reference.id}"
           end
       end
       #no new stuff beyond this point
