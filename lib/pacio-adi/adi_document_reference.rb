@@ -81,7 +81,8 @@ module PacioAdi
         uses_request :adi_document_reference
   
         run do
-            assert true
+          assert resource.id == adi_document_reference_id,
+          "Received resource with type: #{resource.type}"
           end
       end
       #no new stuff beyond this point
