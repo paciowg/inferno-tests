@@ -37,7 +37,7 @@ module PacioAdi
         uses_request :adi_document_reference
   
         run do
-          assert_valid_json(request)
+          assert 1 + 1 == 2
         end
       end
       #no new stuff beyond this point
