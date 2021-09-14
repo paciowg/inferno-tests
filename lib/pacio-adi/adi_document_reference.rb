@@ -6,7 +6,7 @@ module PacioAdi
       id :pacio_adi_document_reference
   
       test do
-        title 'Server returns correct ADI Document Reference resource from the ADI Document Reference read interaction'
+        title 'aaaa Server returns correct ADI Document Reference resource from the ADI Document Reference read interaction'
         description %(
           This test will verify that ADI Document Reference resources can be read from the server.
         )
