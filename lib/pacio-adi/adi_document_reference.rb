@@ -37,7 +37,7 @@ module PacioAdi
         uses_request :adi_document_reference
   
         run do
-          assert 1 + 1 == 2
+          assert_valid_resource(profile_url: 'http://hl7.org/fhir/us/pacio-adi/StructureDefinition/PADI-DocumentReference')
         end
       end
       #no new stuff beyond this point
