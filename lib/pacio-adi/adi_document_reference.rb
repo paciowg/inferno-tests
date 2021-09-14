@@ -82,8 +82,8 @@ module PacioAdi
   
         run do
           assert resource.id == -1,
-          "Received resource with to_s: #{resource.to_s}"
-          end
+          ("Received resource with to_s: " + resource.to_s)
+        end
       end
       #no new stuff beyond this point
   
