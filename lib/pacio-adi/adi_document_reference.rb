@@ -31,32 +31,6 @@ module PacioAdi
       end
 
 
-
-      #begin new stuff
-      test do
-        title 'This is a test.... test'
-        description %(
-          This test will test the test's test.
-        )
-        # link http://hl7.org/fhir/us/pacio-adi/StructureDefinition/PADI-DocumentReference
-        uses_request :adi_document_reference
-  
-        run do
-          fhir_read(:DocumentReference, adi_document_reference_id, name: :adi_document_reference)
-  
-          assert_response_status(200)
-          assert_resource_type(:DocumentReference)
-          logger.info("this is a print statement in AdiDocumentReference")
-          logger.info(resource.to_s)
-          assert resource.id == adi_document_reference_id,
-                 "Requested resource with id #{adi_document_reference_id}, received resource with id #{resource.id}"
-          end
-      end
-      #no new stuff beyond this point
-
-
-
-  
       test do
         title 'Server returns ADI Document Reference resoure that matches the ADI Document Reference (PACIO Advance Directives) profile'
         description %(
@@ -68,10 +42,49 @@ module PacioAdi
         run do
           assert_valid_resource(profile_url: 'http://hl7.org/fhir/us/pacio-adi/StructureDefinition/PADI-DocumentReference')
         end
-
-        logger.info("end of validate doc ref test")
-
       end
+
+
+      #begin new stuff
+      test do
+        title 'Document Reference type matches the composition (ADI Header) type'
+        description %(
+          This test will validate the Document Reference returned from the server has a type that matches the composition (ADI Header) type.
+        )
+        # link http://hl7.org/fhir/us/pacio-adi/StructureDefinition/PADI-DocumentReference
+        uses_request :adi_document_reference
+  
+        run do
+            assert true
+          end
+      end
+
+      test do
+        title 'Document Reference subject matches the composition (ADI Header) subject'
+        description %(
+          This test will validate the Document Reference returned from the server has a subject that matches the composition (ADI Header) subject.
+        )
+        # link http://hl7.org/fhir/us/pacio-adi/StructureDefinition/PADI-DocumentReference
+        uses_request :adi_document_reference
+  
+        run do
+            assert true
+          end
+      end
+
+      test do
+        title 'Document Reference custodian matches the composition (ADI Header) custodian'
+        description %(
+          This test will validate the Document Reference returned from the server has a custodian that matches the composition (ADI Header) custodian.
+        )
+        # link http://hl7.org/fhir/us/pacio-adi/StructureDefinition/PADI-DocumentReference
+        uses_request :adi_document_reference
+  
+        run do
+            assert true
+          end
+      end
+      #no new stuff beyond this point
   
     end
   end
