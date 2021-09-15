@@ -92,7 +92,8 @@ module PacioAdi
         run do
           logger.error("custodian test. my_custodian: #{@@my_custodian}")
           assert resource.id == "asdf",
-                  "Received resource with url #{resource.content[0].attachment.url}"
+                  #"Received resource with url #{resource.content[0].attachment.url}"
+                  "custodian test. my_custodian: #{@@my_custodian}"
         end
       end
       #no new stuff beyond this point
