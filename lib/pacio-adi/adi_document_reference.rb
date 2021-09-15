@@ -91,7 +91,7 @@ module PacioAdi
         uses_request :adi_document_reference
   
         run do
-          logger.debug("custodian test. my_custodian: #{@my_custodian}"
+          logger.debug("custodian test. my_custodian: #{@my_custodian}")
           assert resource.id == "asdf",
                   "Received resource with url #{resource.content[0].attachment.url}"
         end
