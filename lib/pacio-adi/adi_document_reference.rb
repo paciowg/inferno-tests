@@ -87,15 +87,12 @@ module PacioAdi
           This test will validate the Document Reference returned from the server has a custodian that matches the composition (ADI Header) custodian.
         )
         # link http://hl7.org/fhir/us/pacio-adi/StructureDefinition/PADI-DocumentReference
-        http_client do
-          url 'https://gw.interop.community/TexasHIE/open/Bundle/Example-Smith-Johnson-Bundle1'
-        end
-        makes_request :http_request
   
         run do
-          get(name: :http_request)
+          fhir_read(:Bundle, 'Example-Smith-Johnson-Bundle1')
+          assert_response_status(200)
           logger.error("custodian test. my_custodian: #{@@my_custodian}")
-          assert :http_request.entry[0].custodian == @@my_custodian,
+          assert resource.entry[0].custodian == @@my_custodian,
                   #"Received resource with url #{resource.content[0].attachment.url}"
                   "custodian test. resource.entry[0].custodian is #{resource.entry[0].custodian} but @@my_custodian is #{@@my_custodian}"
         end
