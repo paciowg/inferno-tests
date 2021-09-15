@@ -34,7 +34,7 @@ module PacioAdi
           #assert resource.id == adi_document_reference_id,
           @@my_custodian = resource.custodian.reference
           logger.error("middle of verify ADI doc ref read server test. my_custodian: #{@@my_custodian}")
-          assert resource.id == "asdf",
+          assert resource.id == adi_document_reference_id,
                  "Requested resource with id #{adi_document_reference_id}, received resource with id #{resource.id}"
         end
       end
@@ -96,7 +96,7 @@ module PacioAdi
           logger.error("custodian test. my_custodian: #{@@my_custodian}")
           assert resource.entry[0].custodian == @@my_custodian,
                   #"Received resource with url #{resource.content[0].attachment.url}"
-                  "custodian test. my_custodian: #{@@my_custodian}"
+                  "custodian test. resource.entry[0].custodian is #{resource.entry[0].custodian} but @@my_custodian is #{@@my_custodian}"
         end
       end
       #no new stuff beyond this point
