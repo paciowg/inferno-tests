@@ -94,7 +94,7 @@ module PacioAdi
           logger.error("custodian test. my_custodian: #{@@my_custodian}")
           assert resource.entry[0].custodian == @@my_custodian,
                   #"Received resource with url #{resource.content[0].attachment.url}"
-                  "custodian test. resource.entry[0].custodian is #{resource.entry[0].custodian} but @@my_custodian is #{@@my_custodian}"
+                  "custodian test. resource.entry[0].custodian is #{resource.entry[0].resource.custodian.reference} but @@my_custodian is #{@@my_custodian}"
         end
       end
       #no new stuff beyond this point
