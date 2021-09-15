@@ -36,7 +36,7 @@ module PacioAdi
                  "Requested resource with id #{adi_document_reference_id}, received resource with id #{resource.id}"
 
           @my_custodian = resource.subject.reference
-          logger.debug("end of verify ADI doc ref read server test. my_custodian: #{@my_custodian}"
+          logger.debug("end of verify ADI doc ref read server test. my_custodian: #{@my_custodian}")
         end
       end
 
