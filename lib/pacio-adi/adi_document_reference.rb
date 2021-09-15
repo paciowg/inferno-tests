@@ -93,8 +93,9 @@ module PacioAdi
         makes_request :http_request
   
         run do
+          get(name: :http_request)
           logger.error("custodian test. my_custodian: #{@@my_custodian}")
-          assert resource.entry[0].custodian == @@my_custodian,
+          assert :http_request.entry[0].custodian == @@my_custodian,
                   #"Received resource with url #{resource.content[0].attachment.url}"
                   "custodian test. resource.entry[0].custodian is #{resource.entry[0].custodian} but @@my_custodian is #{@@my_custodian}"
         end
