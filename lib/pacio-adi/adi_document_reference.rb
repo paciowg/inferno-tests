@@ -12,9 +12,9 @@ module PacioAdi
       id :pacio_adi_document_reference
       input :adi_document_reference_id
 
-      @my_type = ""
-      @my_subject = ""
-      @my_custodian = ""
+      @@my_type = ""
+      @@my_subject = ""
+      @@my_custodian = ""
   
       test do
         title 'Server returns correct ADI Document Reference resource from the ADI Document Reference read interaction'
@@ -32,8 +32,8 @@ module PacioAdi
         assert_response_status(200)
           assert_resource_type(:DocumentReference)
           #assert resource.id == adi_document_reference_id,
-          @my_custodian = resource.subject.reference
-          logger.error("middle of verify ADI doc ref read server test. my_custodian: #{@my_custodian}")
+          @@my_custodian = resource.subject.reference
+          logger.error("middle of verify ADI doc ref read server test. my_custodian: #{@@my_custodian}")
           assert resource.id == "asdf",
                  "Requested resource with id #{adi_document_reference_id}, received resource with id #{resource.id}"
         end
@@ -90,7 +90,7 @@ module PacioAdi
         uses_request :adi_document_reference
   
         run do
-          logger.error("custodian test. my_custodian: #{@my_custodian}")
+          logger.error("custodian test. my_custodian: #{@@my_custodian}")
           assert resource.id == "asdf",
                   "Received resource with url #{resource.content[0].attachment.url}"
         end
