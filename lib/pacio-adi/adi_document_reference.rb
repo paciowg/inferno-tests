@@ -5,11 +5,16 @@ module PacioAdi
       logger = Logger.new(STDOUT)
       logger.debug("I'm a debug log")
 
+
       title 'ADI Document Reference (PACIO Advance Directives) Tests'
         
       description 'Verify support for the server capabilities required by the ADI Document Reference profile.'
       id :pacio_adi_document_reference
       input :adi_document_reference_id
+
+      @my_type = ""
+      @my_subject = ""
+      @my_custodian = ""
   
       test do
         title 'Server returns correct ADI Document Reference resource from the ADI Document Reference read interaction'
@@ -21,6 +26,7 @@ module PacioAdi
       makes_request :adi_document_reference
   
       run do
+        logger.debug("begin verify ADI doc ref read from server test")
         fhir_read(:DocumentReference, adi_document_reference_id, name: :adi_document_reference)
   
         assert_response_status(200)
@@ -28,6 +34,9 @@ module PacioAdi
           #assert resource.id == adi_document_reference_id,
           assert resource.id == "asdf",
                  "Requested resource with id #{adi_document_reference_id}, received resource with id #{resource.id}"
+
+          @my_custodian = resource.subject.reference
+          logger.debug("end of verify ADI doc ref read server test. my_custodian: #{@my_custodian}"
         end
       end
 
@@ -82,6 +91,7 @@ module PacioAdi
         uses_request :adi_document_reference
   
         run do
+          logger.debug("custodian test. my_custodian: #{@my_custodian}"
           assert resource.id == "asdf",
                   "Received resource with url #{resource.content[0].attachment.url}"
         end
