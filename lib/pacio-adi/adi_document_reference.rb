@@ -24,7 +24,7 @@ module PacioAdi
         assert_response_status(200)
           assert_resource_type(:DocumentReference)
           #assert resource.id == adi_document_reference_id,
-          my_custodian = resource.custodian
+          @@my_custodian = resource.custodian
           assert resource.id == adi_document_reference_id,
                  "Requested resource with id #{adi_document_reference_id}, received resource with id #{resource.id}"
         end
