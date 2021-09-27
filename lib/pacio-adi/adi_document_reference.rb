@@ -24,7 +24,7 @@ module PacioAdi
         assert_response_status(200)
           assert_resource_type(:DocumentReference)
           #assert resource.id == adi_document_reference_id,
-
+          my_custodian = resource.custodian
           assert resource.id == adi_document_reference_id,
                  "Requested resource with id #{adi_document_reference_id}, received resource with id #{resource.id}"
         end
@@ -86,7 +86,7 @@ module PacioAdi
           assert_response_status(200)
           assert resource.entry[0].resource.custodian == @@my_custodian,
                   #"Received resource with url #{resource.content[0].attachment.url}"
-                  "custodian test. resource.entry[0].custodian is #{resource.entry[0].resource.custodian.reference} but @@my_custodian is #{@@my_custodian}"
+                  "custodian test. resource.entry[0].custodian is #{resource.entry[0].resource.custodian} but @@my_custodian is #{@@my_custodian}"
         end
       end
       #no new stuff beyond this point
