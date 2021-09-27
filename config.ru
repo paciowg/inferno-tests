@@ -1,7 +1,5 @@
 require 'inferno'
 
-config.log_level = :warn
-
 inferno_spec = Bundler.locked_gems.specs.find { |spec| spec.name == 'inferno_core' }
 
 inferno_path =
