@@ -122,6 +122,7 @@ end
 
 require 'inferno'
 Inferno::Application.finalize!
+Inferno::Application['logger'].level = Logger::WARN
 
 require Inferno::SpecSupport::FACTORY_BOT_SUPPORT_PATH
 
