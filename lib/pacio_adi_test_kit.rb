@@ -5,7 +5,6 @@ module PacioAdi
     id :test_suite_adi
     title 'PACIO Advance Directives'
     description 'PACIO Advance Directives'
-    Rails.logger.level = 0
 
     # This input will be available to all tests in this suite
     input :url
