@@ -4,7 +4,7 @@ module PacioAdi
       title 'ADI Document Reference (PACIO Advance Directives) Tests'
 
       require "logger"
-      logger = Logger.new('/home/bmeshell/inferno-tests/log.txt')
+      logger = Logger.new(STDOUT)
       logger.debug("this is a debug log")
       logger.error("this is an error log")
         
