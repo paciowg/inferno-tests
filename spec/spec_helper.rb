@@ -131,8 +131,8 @@ FactoryBot.definition_file_paths = [
 
 RSpec::Matchers.define_negated_matcher :exclude, :include
 
-FHIR.logger = Inferno::Application['logger']
-FHIR.logger.level = Logger::WARN #todo this line prevents my logs from getting burried. Remove it line when done testing.
+#todo: uncomment when done testing
+#FHIR.logger = Inferno::Application['logger']
 
 DatabaseCleaner[:sequel].strategy = :truncation
 DatabaseCleaner[:sequel].db = Inferno::Application['db.connection']
