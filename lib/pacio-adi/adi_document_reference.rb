@@ -5,7 +5,7 @@ module PacioAdi
 
       require "logger"
       logger = Logger.new('log.txt')
-      logger.debut("this is a debut log")
+      logger.debug("this is a debug log")
       logger.error("this is an error log")
         
       description 'Verify support for the server capabilities required by the ADI Document Reference profile.'
