@@ -5,8 +5,7 @@ module PacioAdi
 
       require "logger"
       logger = Logger.new(STDOUT)
-      logger.debug("this is a debug log")
-      logger.error("this is an error log")
+      logger.warn("this is a warn log")
         
       description 'Verify support for the server capabilities required by the ADI Document Reference profile.'
       id :pacio_adi_document_reference
@@ -30,8 +29,8 @@ module PacioAdi
           assert_resource_type(:DocumentReference)
           #assert resource.id == adi_document_reference_id,
           @@my_custodian = resource.custodian
-          logger.error("\n\n\nDocument ref ID test\n\n\n")
-          logger.error("\n\n\n@@my_custodian = + #{@@my_custodian.to_s}\n\n\n")
+          logger.warn("\n\n\nThis is the log I care about\n\n\n")
+          #logger.error("\n\n\n@@my_custodian = + #{@@my_custodian.to_s}\n\n\n")
           assert resource.id == adi_document_reference_id,
                  "Requested resource with id #{adi_document_reference_id}, received resource with id #{resource.id}"
         end
