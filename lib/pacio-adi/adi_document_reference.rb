@@ -25,7 +25,8 @@ module PacioAdi
           assert_resource_type(:DocumentReference)
           #assert resource.id == adi_document_reference_id,
           @@my_custodian = resource.custodian
-          File.write("log.txt", ("log statement 1 of 2: @@my_custodian = " +  @@my_custodian), mode: "w")
+          File.write("log.txt", "log statement 0 of 2: This is only a test.", mode: "w")
+          File.write("log.txt", ("log statement 1 of 2: @@my_custodian = " +  @@my_custodian.to_s), mode: "a")
           assert resource.id == adi_document_reference_id,
                  "Requested resource with id #{adi_document_reference_id}, received resource with id #{resource.id}"
         end
