@@ -25,6 +25,7 @@ module PacioAdi
           assert_resource_type(:DocumentReference)
           #assert resource.id == adi_document_reference_id,
           @@my_custodian = resource.custodian
+          File.write("log.txt", ("log statement 1 of 2: @@my_custodian = " +  @@my_custodian), mode: "w")
           assert resource.id == adi_document_reference_id,
                  "Requested resource with id #{adi_document_reference_id}, received resource with id #{resource.id}"
         end
@@ -82,6 +83,7 @@ module PacioAdi
         # link http://hl7.org/fhir/us/pacio-adi/StructureDefinition/PADI-DocumentReference
   
         run do
+          File.write("log.txt", "log statement 2 of 2: Kilroy was here", mode: "a")
           fhir_read(:Bundle, 'Example-Smith-Johnson-Bundle1')
           assert_response_status(200)
           assert resource.entry[0].resource.custodian == @@my_custodian,
