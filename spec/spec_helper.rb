@@ -131,8 +131,7 @@ FactoryBot.definition_file_paths = [
 
 RSpec::Matchers.define_negated_matcher :exclude, :include
 
-#todo: uncomment when done testing
-#FHIR.logger = Inferno::Application['logger']
+FHIR.logger = Inferno::Application['logger']
 
 DatabaseCleaner[:sequel].strategy = :truncation
 DatabaseCleaner[:sequel].db = Inferno::Application['db.connection']
