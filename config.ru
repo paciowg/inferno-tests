@@ -14,6 +14,7 @@ inferno_path =
 use Rack::Static, urls: ['/public'], root: inferno_path
 
 Inferno::Application.finalize!
+Inferno::Application['logger'].level = Logger::WARN
 
 use Inferno::Utils::Middleware::RequestLogger
 
