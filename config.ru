@@ -15,6 +15,6 @@ use Rack::Static, urls: ['/public'], root: inferno_path
 
 Inferno::Application.finalize!
 
-use Inferno::Utils::Middleware::RequestLogger
+#use Inferno::Utils::Middleware::RequestLogger
 
 run Inferno::Web.app
