@@ -30,8 +30,8 @@ module PacioAdi
           assert_resource_type(:DocumentReference)
           #assert resource.id == adi_document_reference_id,
           @@my_custodian = resource.custodian
-          File.write("/home/bmeshell/inferno-tests/log.txt", "log statement 0 of 2: This is only a test.", mode: "w")
-          File.write("/home/bmeshell/inferno-tests/log.txt", ("log statement 1 of 2: @@my_custodian = " +  @@my_custodian.to_s), mode: "a")
+          logger.error("\n\n\nDocument ref ID test\n\n\n")
+          logger.error("\n\n\n@@my_custodian = + #{@@my_custodian.to_s}\n\n\n")
           assert resource.id == adi_document_reference_id,
                  "Requested resource with id #{adi_document_reference_id}, received resource with id #{resource.id}"
         end
@@ -89,7 +89,7 @@ module PacioAdi
         # link http://hl7.org/fhir/us/pacio-adi/StructureDefinition/PADI-DocumentReference
   
         run do
-          File.write("/home/bmeshell/inferno-tests/log.txt", "log statement 2 of 2: Kilroy was here", mode: "a")
+          logger.error("\n\n\ncustodian test\n\n\n")
           fhir_read(:Bundle, 'Example-Smith-Johnson-Bundle1')
           assert_response_status(200)
           assert resource.entry[0].resource.custodian == @@my_custodian,
