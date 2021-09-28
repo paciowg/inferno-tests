@@ -35,21 +35,22 @@ module PacioAdi
     end
 
     group do
-      title 'Advance Directives Resources'
+      title 'Advance Directives'
 
+      #todo: uncomment when done
       #group from: :pacio_adi_patient
-      group from: :pacio_adi_organ_donation
-      group from: :pacio_adi_personal_goal
-      group from: :pacio_adi_adi_provenance
-      group from: :pacio_adi_care_experience_preference
-      group from: :pacio_adi_personal_priorities_organizer
-      group from: :pacio_adi_autopsy_observation
-      group from: :pacio_adi_personal_intervention_preference
-      group from: :pacio_adi_pmolst_observation
-      group from: :pacio_adi_healthcare_agent_consent
-      group from: :pacio_adi_healthcare_agent
-      group from: :pacio_adi_personal_advance_care_plan_composition
-      group from: :pacio_adi_header
+      #group from: :pacio_adi_organ_donation
+      #group from: :pacio_adi_personal_goal
+      #group from: :pacio_adi_adi_provenance
+      #group from: :pacio_adi_care_experience_preference
+      #group from: :pacio_adi_personal_priorities_organizer
+      #group from: :pacio_adi_autopsy_observation
+      #group from: :pacio_adi_personal_intervention_preference
+      #group from: :pacio_adi_pmolst_observation
+      #group from: :pacio_adi_healthcare_agent_consent
+      #group from: :pacio_adi_healthcare_agent
+      #group from: :pacio_adi_personal_advance_care_plan_composition
+      #group from: :pacio_adi_header
       group from: :pacio_adi_document_reference
 
     end
