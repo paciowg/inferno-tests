@@ -71,8 +71,33 @@ module PacioAdi
         uses_request :adi_document_reference
   
         run do
-            assert true
-          end
+          #read DocumentReference resource
+          logger.warn("") #whitespace for readable logs
+          logger.warn("begin subject test")
+          fhir_read(:DocumentReference, adi_document_reference_id, name: :adi_document_reference)
+          assert_response_status(200)
+          
+          #get necessary values from DocumentReference resource
+          bundle_id = resource.content[0].attachment.url.split('/')[1]  #url has structure "resource-type/resource-id" We only want the id after the slash 
+          doc_ref_subject = resource.subject
+          logger.warn("resource after DocumentReference fhir_read = #{resource.to_s}")
+          logger.warn("bundle_id = #{bundle_id}")
+          logger.warn("doc_ref_subject = #{doc_ref_subject.to_s}")
+
+          #read the Bundle resource from url in DocumentReference
+          fhir_read(:Bundle, bundle_id)
+          assert_response_status(200)
+
+          #get necessary values from Bundle resource
+          bundle_subject = resource.entry[0].resource.subject
+          logger.warn("resource after Bundle fhir_read = #{resource.to_s}")
+          logger.warn("bundle_subject = #{bundle_subject.to_s}")
+
+          assert(doc_ref_subject == bundle_subject,
+                    "Expected subject: #{doc_ref_subject.reference} but was: #{bundle_subject.reference}")
+
+          logger.warn("end of subject test")
+        end
       end
 
       test do
@@ -81,7 +106,6 @@ module PacioAdi
           This test will validate the Document Reference returned from the server has a custodian that matches the composition (ADI Header) custodian.
         )
         # link http://hl7.org/fhir/us/pacio-adi/StructureDefinition/PADI-DocumentReference
-
         uses_request :adi_document_reference
   
         run do
@@ -110,8 +134,6 @@ module PacioAdi
           assert(doc_ref_custodian == bundle_custodian,
                     "Expected custodian: #{doc_ref_custodian.reference} but was: #{bundle_custodian.reference}")
 
-          #assert resource.entry[0].resource.custodian == @@my_custodian,
-          #        "custodian test. resource.entry[0].custodian is #{resource.entry[0].resource.custodian} but @@my_custodian is #{@@my_custodian}"
           logger.warn("end of custodian test")
         end
       end
