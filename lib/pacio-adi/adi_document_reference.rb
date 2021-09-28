@@ -37,23 +37,23 @@ module PacioAdi
       end
 
 
-      test do
-        title 'Server returns ADI Document Reference resoure that matches the ADI Document Reference (PACIO Advance Directives) profile'
-        description %(
-          This test will validate that the ADI Document Reference resource returned from the server matches the ADI Document Reference (PACIO Advance Directives) profile.
-        )
-        # link http://hl7.org/fhir/us/pacio-adi/StructureDefinition/PADI-DocumentReference
-        uses_request :adi_document_reference
-  
-        run do
-          logger.warn("") #whitespace for readable logs
-          logger.warn("begin DocumentReference validation test")
-          #todo: uncomment assert_valid_resource test
-          #assert_valid_resource(profile_url: 'http://hl7.org/fhir/us/pacio-adi/StructureDefinition/PADI-DocumentReference')
-          assert true
-          logger.warn("end of DocumentReference validation test")
-        end
-      end
+      #test do
+      #  title 'Server returns ADI Document Reference resoure that matches the ADI Document Reference (PACIO Advance Directives) profile'
+      #  description %(
+      #    This test will validate that the ADI Document Reference resource returned from the server matches the ADI Document Reference (PACIO Advance Directives) profile.
+      #  )
+      #  # link http://hl7.org/fhir/us/pacio-adi/StructureDefinition/PADI-DocumentReference
+      #  uses_request :adi_document_reference
+      #
+      #  run do
+      #    logger.warn("") #whitespace for readable logs
+      #    logger.warn("begin DocumentReference validation test")
+      #    #todo: uncomment assert_valid_resource test
+      #    #assert_valid_resource(profile_url: 'http://hl7.org/fhir/us/pacio-adi/StructureDefinition/PADI-DocumentReference')
+      #    assert true
+      #    logger.warn("end of DocumentReference validation test")
+      #  end
+      #end
 
       #patient test
       test do
@@ -81,6 +81,31 @@ module PacioAdi
           assert_valid_resource(profile_url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient')
 
           logger.warn("end of patient test")
+        end
+      end
+
+      #care experience preference test
+      test do
+        title 'Care Experience Preference resource conforms to the structure defined in ADI Implementation Guide'
+        description %(
+          This test will validate the care experience preference resource returned from the server conforms to the structure defined in ADI Implementation Guide.
+        )
+        # link http://hl7.org/fhir/us/pacio-adi/StructureDefinition/PADI-DocumentReference
+        uses_request :adi_document_reference
+  
+        run do
+          logger.warn("") #whitespace for readable logs
+          logger.warn("begin care experience preference test")
+          #todo: hard coded url for demo only
+          goal_id = "https://gw.interop.community/TexasHIE/open/Goal/Example-Smith-Johnson-CareExperiencePreference1"
+          fhir_read(:Goal, goal_id, name: :adi_document_reference)
+          assert_response_status(200)
+          
+          logger.warn("resource after Goal fhir_read = #{resource.to_s}")
+
+          assert_valid_resource(profile_url: 'http://hl7.org/fhir/us/pacio-adi/StructureDefinition/PADI-CareExperiencePreference')
+
+          logger.warn("end of care experience preference test")
         end
       end
 
