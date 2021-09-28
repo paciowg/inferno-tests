@@ -10,8 +10,8 @@ module PacioAdi
       id :pacio_adi_document_reference
       input :adi_document_reference_id
 
-      @@my_document_reference
-      @@my_bundle
+      @@my_document_reference = nil
+      @@my_bundle = nil
   
       test do
         title 'Server returns correct ADI Document Reference resource from the ADI Document Reference read interaction'
