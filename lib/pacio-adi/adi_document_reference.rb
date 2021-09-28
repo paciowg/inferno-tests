@@ -49,8 +49,6 @@ module PacioAdi
         end
       end
 
-
-      #begin new stuff
       test do
         title 'Document Reference type matches the composition (ADI Header) type'
         description %(
@@ -88,7 +86,8 @@ module PacioAdi
   
         run do
           #read DocumentReference resource
-          logger.warn("\nbegin custodian test")
+          logger.warn("") #whitespace for readable logs
+          logger.warn("begin custodian test")
           fhir_read(:DocumentReference, adi_document_reference_id, name: :adi_document_reference)
           assert_response_status(200)
           
@@ -116,7 +115,6 @@ module PacioAdi
           logger.warn("end of custodian test")
         end
       end
-      #no new stuff beyond this point
   
     end
   end
