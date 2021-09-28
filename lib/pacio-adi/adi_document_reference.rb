@@ -84,31 +84,6 @@ module PacioAdi
         end
       end
 
-      #care experience preference test
-      test do
-        title 'Care Experience Preference resource conforms to the structure defined in ADI Implementation Guide'
-        description %(
-          This test will validate the care experience preference resource returned from the server conforms to the structure defined in ADI Implementation Guide.
-        )
-        # link http://hl7.org/fhir/us/pacio-adi/StructureDefinition/PADI-DocumentReference
-        uses_request :adi_document_reference
-  
-        run do
-          logger.warn("") #whitespace for readable logs
-          logger.warn("begin care experience preference test")
-          #todo: hard coded url for demo only
-          goal_id = "Example-Smith-Johnson-CareExperiencePreference1"
-          fhir_read(:Goal, goal_id, name: :adi_document_reference)
-          assert_response_status(200)
-          
-          logger.warn("resource after Goal fhir_read = #{resource.to_s}")
-
-          assert_valid_resource(profile_url: 'http://hl7.org/fhir/us/pacio-adi/StructureDefinition/PADI-CareExperiencePreference')
-
-          logger.warn("end of care experience preference test")
-        end
-      end
-
       #type test
       test do
         title 'Document Reference type matches the composition (ADI Header) type'
