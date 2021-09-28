@@ -97,7 +97,7 @@ module PacioAdi
           logger.warn("") #whitespace for readable logs
           logger.warn("begin care experience preference test")
           #todo: hard coded url for demo only
-          goal_id = "https://gw.interop.community/TexasHIE/open/Goal/Example-Smith-Johnson-CareExperiencePreference1"
+          goal_id = "Example-Smith-Johnson-CareExperiencePreference1"
           fhir_read(:Goal, goal_id, name: :adi_document_reference)
           assert_response_status(200)
           
