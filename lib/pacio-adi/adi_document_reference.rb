@@ -55,6 +55,35 @@ module PacioAdi
         end
       end
 
+      #patient test
+      test do
+        title 'Patient resource conforms to the structure defined in ADI Implementation Guide'
+        description %(
+          This test will validate the patient resource returned from the server conforms to the structure defined in ADI Implementation Guide.
+        )
+        # link http://hl7.org/fhir/us/pacio-adi/StructureDefinition/PADI-DocumentReference
+        uses_request :adi_document_reference
+  
+        run do
+          logger.warn("") #whitespace for readable logs
+          logger.warn("begin patient test")
+          fhir_read(:DocumentReference, adi_document_reference_id, name: :adi_document_reference)
+          assert_response_status(200)
+          
+          #get necessary values from DocumentReference resource
+          patient_id = resource.subject.reference.split('/')[1]  #url has structure "resource-type/resource-id" We only want the id after the slash 
+          logger.warn("resource after DocumentReference fhir_read = #{resource.to_s}")
+          logger.warn("patient_id = #{patient_id}")
+
+          fhir_read(:Patient, patient_id)
+          logger.warn("resource after Patient fhir_read = #{resource.to_s}")
+
+          assert_valid_resource(profile_url: 'http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient')
+
+          logger.warn("end of patient test")
+        end
+      end
+
       #type test
       test do
         title 'Document Reference type matches the composition (ADI Header) type'
