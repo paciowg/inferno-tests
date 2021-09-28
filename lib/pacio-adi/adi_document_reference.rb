@@ -22,9 +22,16 @@ module PacioAdi
         run do
           fhir_read(:DocumentReference, adi_document_reference_id, name: :adi_document_reference)
           bundle_url = resource.content[0].attachment.url
-          logger.warn("First test, after fhir_read :DocumentReference. resource = #{resource.to_s}")
-          logger.warn("First test, after fhir_read :DocumentReference. url = #{url}")
-          logger.warn("First test, after fhir_read :DocumentReference. bundle_url = #{bundle_url}")
+          
+          #url has structure "resource-type/resource-id" We only want the id after the slash 
+          bundle_id = resource.content[0].attachment.url.split('/')[1] 
+
+          logger.warn("First test, after fhir_read :DocumentReference")
+          logger.warn("resource = #{resource.to_s}")
+          logger.warn("url = #{url}")
+          logger.warn("bundle_url = #{bundle_url}")
+          logger.warn("bundle_id = #{bundle_id}")
+          
           assert_response_status(200)
           assert_resource_type(:DocumentReference)
           assert resource.id == adi_document_reference_id,
