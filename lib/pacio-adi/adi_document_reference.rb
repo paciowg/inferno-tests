@@ -10,7 +10,8 @@ module PacioAdi
       id :pacio_adi_document_reference
       input :adi_document_reference_id
 
-      @@my_custodian = ""
+      @@my_document_reference
+      @@my_bundle
   
       test do
         title 'Server returns correct ADI Document Reference resource from the ADI Document Reference read interaction'
@@ -22,12 +23,12 @@ module PacioAdi
       makes_request :adi_document_reference
   
         run do
+          logger.warn("First test, before fhir_read :DocumentReference. @@my_document_reference = #{@@my_document_reference.to_s}")
           fhir_read(:DocumentReference, adi_document_reference_id, name: :adi_document_reference)
-          logger.warn("First test, after fhir_read :DocumentReference. resource = #{resource.to_s}")
+          @@my_document_reference = resource
+          logger.warn("First test, after fhir_read :DocumentReference. @@my_document_reference = #{@@my_document_reference.to_s}")
           assert_response_status(200)
           assert_resource_type(:DocumentReference)
-          #assert resource.id == adi_document_reference_id,
-          @@my_custodian = resource.custodian
           assert resource.id == adi_document_reference_id,
                  "Requested resource with id #{adi_document_reference_id}, received resource with id #{resource.id}"
         end
@@ -85,12 +86,15 @@ module PacioAdi
         # link http://hl7.org/fhir/us/pacio-adi/StructureDefinition/PADI-DocumentReference
   
         run do
+          logger.warn("custodian test before fhir_read :Bundle. @@my_document_reference = #{@@my_document_reference.to_s}")
+          logger.warn("custodian test before fhir_read :Bundle. @@my_bundle = #{@@my_bundle.to_s}")
           fhir_read(:Bundle, 'Example-Smith-Johnson-Bundle1')
-          logger.error("custodian test after fhir_read :Bundle. resource = #{resource.to_s}")
+          @@my_bundle = resource
+          logger.warn("custodian test after fhir_read :Bundle. @@my_bundle = #{@@my_bundle.to_s}")
           assert_response_status(200)
-          assert resource.entry[0].resource.custodian == @@my_custodian,
-                  #"Received resource with url #{resource.content[0].attachment.url}"
-                  "custodian test. resource.entry[0].custodian is #{resource.entry[0].resource.custodian} but @@my_custodian is #{@@my_custodian}"
+
+          #assert resource.entry[0].resource.custodian == @@my_custodian,
+          #        "custodian test. resource.entry[0].custodian is #{resource.entry[0].resource.custodian} but @@my_custodian is #{@@my_custodian}"
         end
       end
       #no new stuff beyond this point
