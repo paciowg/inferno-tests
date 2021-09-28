@@ -18,19 +18,13 @@ module PacioAdi
         # link http://hl7.org/fhir/us/pacio-adi/StructureDefinition/PADI-DocumentReference
   
       makes_request :adi_document_reference
+
+
+        #todo: move assert valid 200 to separate tests
+        
   
         run do
           fhir_read(:DocumentReference, adi_document_reference_id, name: :adi_document_reference)
-          bundle_url = resource.content[0].attachment.url
-          
-          #url has structure "resource-type/resource-id" We only want the id after the slash 
-          bundle_id = resource.content[0].attachment.url.split('/')[1] 
-
-          logger.warn("First test, after fhir_read :DocumentReference")
-          logger.warn("resource = #{resource.to_s}")
-          logger.warn("url = #{url}")
-          logger.warn("bundle_url = #{bundle_url}")
-          logger.warn("bundle_id = #{bundle_id}")
           
           assert_response_status(200)
           assert_resource_type(:DocumentReference)
@@ -89,13 +83,37 @@ module PacioAdi
           This test will validate the Document Reference returned from the server has a custodian that matches the composition (ADI Header) custodian.
         )
         # link http://hl7.org/fhir/us/pacio-adi/StructureDefinition/PADI-DocumentReference
+
+        uses_request :adi_document_reference
   
         run do
-          fhir_read(:Bundle, 'Example-Smith-Johnson-Bundle1')
+          #read DocumentReference resource
+          logger.warn("\nbegin custodian test")
+          fhir_read(:DocumentReference, adi_document_reference_id, name: :adi_document_reference)
           assert_response_status(200)
+          
+          #get necessary values from DocumentReference resource
+          bundle_id = resource.content[0].attachment.url.split('/')[1]  #url has structure "resource-type/resource-id" We only want the id after the slash 
+          doc_ref_custodian = resource.custodian
+          logger.warn("resource after DocumentReference fhir_read = #{resource.to_s}")
+          logger.warn("bundle_id = #{bundle_id}")
+          logger.warn("doc_ref_custodian = #{doc_ref_custodian.to_s}")
+
+          #read the Bundle resource from url in DocumentReference
+          fhir_read(:Bundle, bundle_id)
+          assert_response_status(200)
+
+          #get necessary values from Bundle resource
+          bundle_custodian = resource.entry[0].resource.custodian
+          logger.warn("resource after Bundle fhir_read = #{resource.to_s}")
+          logger.warn("bundle_custodian = #{bundle_custodian.to_s}")
+
+          assert(doc_ref_custodian == bundle_custodian,
+                    "Expected custodian: #{doc_ref_custodian.reference} but was: #{bundle_custodian.reference}")
 
           #assert resource.entry[0].resource.custodian == @@my_custodian,
           #        "custodian test. resource.entry[0].custodian is #{resource.entry[0].resource.custodian} but @@my_custodian is #{@@my_custodian}"
+          logger.warn("end of custodian test")
         end
       end
       #no new stuff beyond this point
