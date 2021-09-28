@@ -88,7 +88,7 @@ module PacioAdi
           logger.warn("bundle_type = #{bundle_type.to_s}")
 
           assert(doc_ref_type == bundle_type,
-                    "Expected type: #{doc_ref_type.reference} but was: #{bundle_type.reference}")
+                    "Expected type: #{doc_ref_type.coding[0].code} but was: #{bundle_type.coding[0].code}")
 
           logger.warn("end of type test")
         end
