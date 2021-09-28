@@ -5,7 +5,6 @@ module PacioAdi
 
       require "logger"
       logger = Logger.new(STDOUT)
-      logger.warn("this is a warn log")
         
       description 'Verify support for the server capabilities required by the ADI Document Reference profile.'
       id :pacio_adi_document_reference
@@ -22,15 +21,13 @@ module PacioAdi
   
       makes_request :adi_document_reference
   
-      run do
-        fhir_read(:DocumentReference, adi_document_reference_id, name: :adi_document_reference)
-  
-        assert_response_status(200)
+        run do
+          fhir_read(:DocumentReference, adi_document_reference_id, name: :adi_document_reference)
+          logger.warn("First test, after fhir_read :DocumentReference. resource = #{resource.to_s}")
+          assert_response_status(200)
           assert_resource_type(:DocumentReference)
           #assert resource.id == adi_document_reference_id,
           @@my_custodian = resource.custodian
-          logger.warn("\n\n\nThis is the log I care about\n\n\n")
-          #logger.error("\n\n\n@@my_custodian = + #{@@my_custodian.to_s}\n\n\n")
           assert resource.id == adi_document_reference_id,
                  "Requested resource with id #{adi_document_reference_id}, received resource with id #{resource.id}"
         end
@@ -88,8 +85,8 @@ module PacioAdi
         # link http://hl7.org/fhir/us/pacio-adi/StructureDefinition/PADI-DocumentReference
   
         run do
-          logger.error("\n\n\ncustodian test\n\n\n")
           fhir_read(:Bundle, 'Example-Smith-Johnson-Bundle1')
+          logger.error("custodian test after fhir_read :Bundle. resource = #{resource.to_s}")
           assert_response_status(200)
           assert resource.entry[0].resource.custodian == @@my_custodian,
                   #"Received resource with url #{resource.content[0].attachment.url}"
