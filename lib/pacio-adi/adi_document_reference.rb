@@ -9,9 +9,6 @@ module PacioAdi
       description 'Verify support for the server capabilities required by the ADI Document Reference profile.'
       id :pacio_adi_document_reference
       input :adi_document_reference_id
-
-      @@my_document_reference = nil
-      @@my_bundle = nil
   
       test do
         title 'Server returns correct ADI Document Reference resource from the ADI Document Reference read interaction'
@@ -23,10 +20,11 @@ module PacioAdi
       makes_request :adi_document_reference
   
         run do
-          logger.warn("First test, before fhir_read :DocumentReference. @@my_document_reference = #{@@my_document_reference.to_s}")
           fhir_read(:DocumentReference, adi_document_reference_id, name: :adi_document_reference)
-          @@my_document_reference = resource
-          logger.warn("First test, after fhir_read :DocumentReference. @@my_document_reference = #{@@my_document_reference.to_s}")
+          bundle_url = resource.content[0].attachment.url
+          logger.warn("First test, after fhir_read :DocumentReference. resource = #{resource.to_s}")
+          logger.warn("First test, after fhir_read :DocumentReference. url = #{url}")
+          logger.warn("First test, after fhir_read :DocumentReference. bundle_url = #{bundle_url}")
           assert_response_status(200)
           assert_resource_type(:DocumentReference)
           assert resource.id == adi_document_reference_id,
@@ -86,11 +84,7 @@ module PacioAdi
         # link http://hl7.org/fhir/us/pacio-adi/StructureDefinition/PADI-DocumentReference
   
         run do
-          logger.warn("custodian test before fhir_read :Bundle. @@my_document_reference = #{@@my_document_reference.to_s}")
-          logger.warn("custodian test before fhir_read :Bundle. @@my_bundle = #{@@my_bundle.to_s}")
           fhir_read(:Bundle, 'Example-Smith-Johnson-Bundle1')
-          @@my_bundle = resource
-          logger.warn("custodian test after fhir_read :Bundle. @@my_bundle = #{@@my_bundle.to_s}")
           assert_response_status(200)
 
           #assert resource.entry[0].resource.custodian == @@my_custodian,
