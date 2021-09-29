@@ -1,9 +1,8 @@
-#require_relative 'pacio-rat/pacio_rat_patient'
 Dir.glob(File.join(__dir__, 'pacio-rat', '*.rb')).each { |path| require_relative path.delete_prefix("#{__dir__}/") }
 
 module PacioRat
   class Suite < Inferno::TestSuite
-    id :test_suite_template
+    id :test_suite_template #should I keep id as test_suite_template or rename it to something like test_suite_rat?
     title 'PACIO Re-assessment Timepoints'
     description 'PACIO Re-assessment Timepoints'
 

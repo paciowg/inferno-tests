@@ -13,4 +13,4 @@ services:
     image: infernocommunity/fhir-validator-service
     # Update this path to match your directory structure
     volumes:
-      - ./lib/pacio-rat/igs:/home/igs
+      - ./lib/igs:/home/igs
