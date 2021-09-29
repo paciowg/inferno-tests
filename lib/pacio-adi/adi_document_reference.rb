@@ -36,25 +36,6 @@ module PacioAdi
         end
       end
 
-
-      #test do
-      #  title 'Server returns ADI Document Reference resoure that matches the ADI Document Reference (PACIO Advance Directives) profile'
-      #  description %(
-      #    This test will validate that the ADI Document Reference resource returned from the server matches the ADI Document Reference (PACIO Advance Directives) profile.
-      #  )
-      #  # link http://hl7.org/fhir/us/pacio-adi/StructureDefinition/PADI-DocumentReference
-      #  uses_request :adi_document_reference
-      #
-      #  run do
-      #    logger.warn("") #whitespace for readable logs
-      #    logger.warn("begin DocumentReference validation test")
-      #    #todo: uncomment assert_valid_resource test
-      #    #assert_valid_resource(profile_url: 'http://hl7.org/fhir/us/pacio-adi/StructureDefinition/PADI-DocumentReference')
-      #    assert true
-      #    logger.warn("end of DocumentReference validation test")
-      #  end
-      #end
-
       #patient test
       test do
         title 'Patient resource conforms to the structure defined in ADI Implementation Guide'
