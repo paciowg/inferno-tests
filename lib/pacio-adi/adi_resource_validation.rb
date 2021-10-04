@@ -7,7 +7,7 @@ module PacioAdi
       logger = Logger.new(STDOUT)
         
       description 'Verify the FHIR instances identified in the Document Reference have a valid structure, as defined in the ADI Implementation Guide.'
-      id :pacio_adi_capability_statement
+      id :pacio_resource_validation
       input :adi_document_reference_id
   
       test do
@@ -64,6 +64,92 @@ module PacioAdi
           logger.warn("end of patient test")
         end
       end
+
+      #Healthcare Agent test
+      test do
+        title 'Healthcare Agent resource conforms to the structure defined in ADI Implementation Guide'
+        description %(
+          This test will validate the Healthcare Agent resource returned from the server conforms to the structure defined in ADI Implementation Guide.
+        )
+        # link http://hl7.org/fhir/us/pacio-adi/StructureDefinition/PADI-DocumentReference
+        uses_request :adi_document_reference
+  
+        run do
+          assert(true)
+        end
+      end
+
+      #Healthcare Agent Consent test
+      test do
+        title 'Healthcare Agent Consent resource conforms to the structure defined in ADI Implementation Guide'
+        description %(
+          This test will validate the Healthcare Agent resource returned from the server conforms to the structure defined in ADI Implementation Guide.
+        )
+        # link http://hl7.org/fhir/us/pacio-adi/StructureDefinition/PADI-DocumentReference
+        uses_request :adi_document_reference
+  
+        run do
+          assert(true)
+        end
+      end
+
+      #Care Experience Preference test
+      test do
+        title 'Care Experience Preference resource conforms to the structure defined in ADI Implementation Guide'
+        description %(
+          This test will validate the Care Experience Preference resource returned from the server conforms to the structure defined in ADI Implementation Guide.
+        )
+        # link http://hl7.org/fhir/us/pacio-adi/StructureDefinition/PADI-DocumentReference
+        uses_request :adi_document_reference
+  
+        run do
+          assert(true)
+        end
+      end
+
+      #Personal Intervention Preference test
+      test do
+        title 'Personal Intervention Preference resource conforms to the structure defined in ADI Implementation Guide'
+        description %(
+          This test will validate the Personal Intervention Preference resource returned from the server conforms to the structure defined in ADI Implementation Guide.
+        )
+        # link http://hl7.org/fhir/us/pacio-adi/StructureDefinition/PADI-DocumentReference
+        uses_request :adi_document_reference
+  
+        run do
+          assert(true)
+        end
+      end
+
+      #Personal Goal test
+      test do
+        title 'Personal Goal resource conforms to the structure defined in ADI Implementation Guide'
+        description %(
+          This test will validate the Personal Goal resource returned from the server conforms to the structure defined in ADI Implementation Guide.
+        )
+        # link http://hl7.org/fhir/us/pacio-adi/StructureDefinition/PADI-DocumentReference
+        uses_request :adi_document_reference
+  
+        run do
+          assert(true)
+        end
+      end
+
+      #Organ Donation Observation test
+      test do
+        title 'Organ Donation Observation resource conforms to the structure defined in ADI Implementation Guide'
+        description %(
+          This test will validate the Organ Donation Observation resource returned from the server conforms to the structure defined in ADI Implementation Guide.
+        )
+        # link http://hl7.org/fhir/us/pacio-adi/StructureDefinition/PADI-DocumentReference
+        uses_request :adi_document_reference
+  
+        run do
+          assert(true)
+        end
+      end
+
+
       
   
     end
