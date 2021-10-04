@@ -1,7 +1,7 @@
 module PacioAdi
     class AdiCapabilityStatement < Inferno::TestGroup
 
-      title 'ADI Capability Statement Test'
+      title 'ADI Document Reference and Capability Statement Test'
 
       require "logger"
       logger = Logger.new(STDOUT)

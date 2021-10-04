@@ -18,7 +18,7 @@ module PacioAdi
     
 
     group do
-      title 'Advance Directives'
+      title 'PACIO Advance Directives Interoperability (ADI) Tests'
 
       #todo: uncomment when done
       #group from: :pacio_adi_patient
