@@ -35,6 +35,7 @@ module PacioAdi
       #group from: :pacio_adi_personal_advance_care_plan_composition
       #group from: :pacio_adi_header
       group from: :pacio_adi_capability_statement
+      group from: :pacio_resource_validation
       group from: :pacio_adi_document_reference
 
     end
