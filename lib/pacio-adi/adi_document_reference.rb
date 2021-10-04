@@ -1,7 +1,7 @@
 module PacioAdi
     class AdiDocumentReference < Inferno::TestGroup
 
-      title 'ADI Document Reference (PACIO Advance Directives) Tests v1'
+      title 'ADI Document Reference (PACIO Advance Directives) Tests'
 
       require "logger"
       logger = Logger.new(STDOUT)
