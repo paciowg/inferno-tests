@@ -38,6 +38,8 @@ module PacioSplasch
       title 'SPLASCH'
 
       group from: :pacio_splasch_spoken_language_comprehension_observation
+      group from: :pacio_splasch_spoken_language_expression_observation
+      group from: :pacio_splasch_swallowing_observation
 
     end
 
