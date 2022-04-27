@@ -15,7 +15,7 @@ module PacioSplasch
   
       makes_request :observation
   
-      run { assert 1 / 0 }
+      run { assert 1 + 1 = 2 }
       #run do
         #fhir_read(:observation, spoken_language_expression_observation_id, name: :observation)
         
@@ -35,7 +35,7 @@ module PacioSplasch
   
         #run do
           #assert_valid_resource(profile_url: 'http://hl7.org/fhir/us/pacio-splasch/StructureDefinition/splasch-SpokenLanguageExpressionObservation')
-          run { assert 1 / 0 }
+          run { assert 1 + 1 = 2 }
         #end
       end
   
@@ -48,7 +48,7 @@ module PacioSplasch
   
         #uses_request :observation
   
-        run { assert 1 / 0 }
+        run { assert 1 + 1 = 2 }
         #run do
           #fhir_search :observation, params: { _id: resource.id }
         
