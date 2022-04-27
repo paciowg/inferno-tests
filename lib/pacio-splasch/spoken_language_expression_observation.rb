@@ -15,14 +15,15 @@ module PacioSplasch
   
       makes_request :observation
   
-      run do
+      run { assert 1 / 0 }
+      #run do
         #fhir_read(:observation, spoken_language_expression_observation_id, name: :observation)
-        assert_true
+        
         #assert_response_status(200)
         #  assert_resource_type(:observation)
         #  assert resource.id == spoken_language_expression_observation_id,
         #         "Requested resource with id #{spoken_language_expression_observation_id}, received resource with id #{resource.id}"
-        end
+        #end
       end
   
       test do
@@ -32,10 +33,10 @@ module PacioSplasch
         )
         #uses_request :observation
   
-        run do
+        #run do
           #assert_valid_resource(profile_url: 'http://hl7.org/fhir/us/pacio-splasch/StructureDefinition/splasch-SpokenLanguageExpressionObservation')
-          assert_true
-        end
+          run { assert 1 / 0 }
+        #end
       end
   
   
@@ -47,12 +48,13 @@ module PacioSplasch
   
         #uses_request :observation
   
-        run do
+        run { assert 1 / 0 }
+        #run do
           #fhir_search :observation, params: { _id: resource.id }
-          assert_true
+        
           #assert_response_status(200)
           #assert_resource_type('Bundle')
-        end
+        #end
       end
   
     end
