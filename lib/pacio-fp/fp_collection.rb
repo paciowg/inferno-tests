@@ -16,7 +16,7 @@ module PacioFp
       makes_request :observation
   
       run do
-        fhir_read(:observation, fp_collection_id, name: :collection)
+        fhir_read(:observation, fp_collection_id, name: :observation)
   
         assert_response_status(200)
           assert_resource_type(:observation)
