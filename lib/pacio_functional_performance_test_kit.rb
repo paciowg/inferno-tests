@@ -38,8 +38,9 @@ module PacioFp
       title 'Functional Performance'
 
       group from: :pacio_fp_observation
-      #group from: 
-      #group from: 
+      group from: :pacio_fp_collection
+      group from: :pacio_fp_narrative_history_of_status 
+      group from: :pacio_fp_use_of_device 
 
     end
 
