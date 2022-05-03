@@ -40,6 +40,8 @@ module PacioSplasch
       group from: :pacio_splasch_spoken_language_comprehension_observation
       group from: :pacio_splasch_spoken_language_expression_observation
       group from: :pacio_splasch_swallowing_observation
+      group from: :pacio_splasch_multi_modal_communication_observation
+      group from: :pacio_splasch_hearing_observation
 
     end
 
