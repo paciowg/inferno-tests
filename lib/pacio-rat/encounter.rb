@@ -12,7 +12,7 @@ module PacioRat
       description %(
         This test will verify that Encounter resources can be read from the server.
       )
-      # link http://hl7.org/fhir/us/pacio-rat/StructureDefinition/prat-encounter
+      # link http://hl7.org/fhir/us/pacio-rt/StructureDefinition/reassessment-timepoints-encounter
 
     makes_request :encounter
 
@@ -31,11 +31,11 @@ module PacioRat
       description %(
         This test will validate that the Encounter resource returned from the server matches the Encounter (PACIO Re-assessment Timepoints) profile.
       )
-      # link http://hl7.org/fhir/us/pacio-rat/StructureDefinition/prat-encounter
+      # link http://hl7.org/fhir/us/pacio-rt/StructureDefinition/reassessment-timepoints-encounter
       uses_request :encounter
 
       run do
-        assert_valid_resource(profile_url: 'http://hl7.org/fhir/us/pacio-rat/StructureDefinition/prat-encounter')
+        assert_valid_resource(profile_url: 'http://hl7.org/fhir/us/pacio-rt/StructureDefinition/reassessment-timepoints-encounter')
       end
     end
 
@@ -45,7 +45,7 @@ module PacioRat
       description %(
         This test will validate that the FHIR server supports searching Encounter by ID (PACIO Re-assessment Timepoints) profile.
       )
-      # link http://hl7.org/fhir/us/pacio-rat/StructureDefinition/prat-encounter
+      # link http://hl7.org/fhir/us/pacio-rt/StructureDefinition/reassessment-timepoints-encounter
 
       uses_request :encounter
 
